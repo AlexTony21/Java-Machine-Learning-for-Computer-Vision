@@ -47,8 +47,8 @@ public class FaceRecognition {
         INDArray dense = output.get("dense");
         embeddings.setInputs(dense);
         INDArray embeddingValues = embeddings.doForward(false, LayerWorkspaceMgr.builder().defaultNoWorkspace().build());
-        log.debug("dense =                 " + dense);
-        log.debug("encodingsValues =                 " + embeddingValues);
+        //log.debug("dense =                 " + dense);
+        //log.debug("encodingsValues =                 " + embeddingValues);
         return embeddingValues;
     }
 
@@ -59,7 +59,7 @@ public class FaceRecognition {
     public void loadModel() throws Exception {
         faceNetSmallV2Model = new FaceNetSmallV2Model();
         computationGraph = faceNetSmallV2Model.init();
-        log.info(computationGraph.summary());
+        //log.info(computationGraph.summary());
     }
 
     public void registerNewMember(String memberId, String imagePath) throws IOException {
@@ -79,7 +79,7 @@ public class FaceRecognition {
         for (Map.Entry<String, INDArray> entry : memberEncodingsMap.entrySet()) {
             INDArray value = entry.getValue();
             double distance = distance(value, encodings);
-            log.info("distance of " + entry.getKey() + " with " + new File(imagePath).getName() + " is " + distance);
+           //log.info("distance of " + entry.getKey() + " with " + new File(imagePath).getName() + " is " + distance);
             if (distance < minDistance) {
                 minDistance = distance;
                 foundUser = entry.getKey();
@@ -88,7 +88,7 @@ public class FaceRecognition {
         if (minDistance > THRESHOLD) {
             foundUser = "Unknown user";
         }
-        log.info(foundUser + " with distance " + minDistance);
+        //log.info(foundUser + " with distance " + minDistance);
         return foundUser;
     }
 }

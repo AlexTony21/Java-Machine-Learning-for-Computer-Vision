@@ -91,7 +91,7 @@ public class NeuralStyleTransfer {
 
         for (int iteration = 0; iteration < ITERATIONS; iteration++) {
             long start = System.currentTimeMillis();
-            log.info("iteration  " + iteration);
+            //log.info("iteration  " + iteration);
 
             CountDownLatch countDownLatch = new CountDownLatch(2);
 

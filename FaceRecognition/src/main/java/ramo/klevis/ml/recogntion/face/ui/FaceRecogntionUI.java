@@ -51,13 +51,13 @@ public class FaceRecogntionUI {
 
         mainPanel = new JPanel(new BorderLayout());
 
-        JButton chooseButton = new JButton("Choose Face Image");
+        JButton chooseButton = new JButton("Photo");
         chooseButton.addActionListener(e -> {
             chooseFileAction();
             mainPanel.updateUI();
         });
 
-        JButton whoIsButton = new JButton("Who Is?");
+        JButton whoIsButton = new JButton("Identification");
         whoIsButton.addActionListener(event -> {
             try {
                 String whoIs = faceRecognition.whoIs(selectedFile.getAbsolutePath());
@@ -70,7 +70,7 @@ public class FaceRecogntionUI {
                 whoIsLabel.setText(whoIs);
                 mainPanel.updateUI();
             } catch (IOException e) {
-                log.error("", e);
+                //log.error("", e);
                 throw new RuntimeException(e);
             }
         });
@@ -85,13 +85,13 @@ public class FaceRecogntionUI {
                     scrollMembersPhotos.updateUI();
                     mainPanel.updateUI();
                 } catch (IOException e) {
-                    log.error("", e);
+                    //log.error("", e);
                     throw new RuntimeException(e);
                 }
             }
         });
 
-        fillMainPanel(chooseButton, whoIsButton, registerNewMemberButton);
+        fillMainPanel(chooseButton, whoIsButton/*, registerNewMemberButton*/);
 
         mainPanel.updateUI();
 
@@ -101,15 +101,15 @@ public class FaceRecogntionUI {
 
     }
 
-    private void fillMainPanel(JButton chooseButton, JButton predictButton, Component registerNewMemberButton) throws IOException {
+    private void fillMainPanel(JButton chooseButton, JButton predictButton/*, Component registerNewMemberButton*/) throws IOException {
 
         GridLayout layout = new GridLayout(1, 4);
         layout.setHgap(1);
         JPanel panelRegister = new JPanel(layout);
         memberNameField = new JTextField();
 
-        panelRegister.add(registerNewMemberButton);
-        panelRegister.add(memberNameField);
+        /*panelRegister.add(registerNewMemberButton);*/
+        /*panelRegister.add(memberNameField);*/
         panelRegister.add(chooseButton);
         panelRegister.add(predictButton);
         mainPanel.add(panelRegister, BorderLayout.NORTH);
@@ -156,7 +156,7 @@ public class FaceRecogntionUI {
                 selectedFile = chooser.getSelectedFile();
                 sourceImagePanel.setImage(selectedFile.getAbsolutePath());
             } catch (IOException e) {
-                log.error("", e);
+                //log.error("", e);
                 throw new RuntimeException(e);
             }
         }
@@ -164,7 +164,7 @@ public class FaceRecogntionUI {
 
     private JFrame createMainFrame() {
         JFrame mainFrame = new JFrame();
-        mainFrame.setTitle("Face Recognizer");
+        mainFrame.setTitle("Reconnaissance Faciale");
         mainFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         mainFrame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         mainFrame.setLocationRelativeTo(null);
@@ -178,7 +178,7 @@ public class FaceRecogntionUI {
     }
 
     private void addSignature() {
-        JLabel signature = new JLabel("ramok.tech", SwingConstants.CENTER);
+        JLabel signature = new JLabel("GO Securi", SwingConstants.CENTER);
         signature.setFont(new Font(Font.SANS_SERIF, Font.ITALIC, 20));
         signature.setForeground(Color.BLUE);
         mainFrame.add(signature, BorderLayout.SOUTH);

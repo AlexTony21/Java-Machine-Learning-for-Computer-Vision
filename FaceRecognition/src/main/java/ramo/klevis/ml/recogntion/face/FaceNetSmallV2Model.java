@@ -3,10 +3,12 @@ package ramo.klevis.ml.recogntion.face;
 import org.deeplearning4j.nn.api.OptimizationAlgorithm;
 import org.deeplearning4j.nn.conf.ComputationGraphConfiguration;
 import org.deeplearning4j.nn.conf.ConvolutionMode;
+import org.deeplearning4j.nn.conf.GradientNormalization;
 import org.deeplearning4j.nn.conf.NeuralNetConfiguration;
 import org.deeplearning4j.nn.conf.graph.L2NormalizeVertex;
 import org.deeplearning4j.nn.conf.graph.MergeVertex;
 import org.deeplearning4j.nn.conf.inputs.InputType;
+import org.deeplearning4j.nn.conf.layers.CenterLossOutputLayer;
 import org.deeplearning4j.nn.conf.layers.DenseLayer;
 import org.deeplearning4j.nn.conf.layers.SubsamplingLayer;
 import org.deeplearning4j.nn.conf.layers.ZeroPaddingLayer;
@@ -15,6 +17,7 @@ import org.deeplearning4j.nn.weights.WeightInit;
 import org.nd4j.linalg.activations.Activation;
 import org.nd4j.linalg.learning.config.Adam;
 import org.nd4j.linalg.learning.config.IUpdater;
+import org.nd4j.linalg.lossfunctions.LossFunctions;
 
 import java.io.IOException;
 
@@ -128,7 +131,7 @@ public class FaceNetSmallV2Model {
                         .lossFunction(LossFunctions.LossFunction.SQUARED_LOSS)
                         .activation(Activation.SOFTMAX).nIn(128).nOut(numClasses).lambda(1e-4).alpha(0.9)
                         .gradientNormalization(GradientNormalization.RenormalizeL2PerLayer).build(),
-                "embeddings")*/
+                "embeddings");*/
         graph.setOutputs("encodings");
 
         return graph.build();
